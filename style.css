@@ -20,20 +20,58 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 
 
-/* Novas seções: trilhas, acampamento, pesca e churrasco */
-.experience-section{padding-top:105px;padding-bottom:110px;background:var(--cream,#f4f2e9)}
-.experience-section .section-head{margin-bottom:38px}
-.experience-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:minmax(220px,280px);gap:14px}
-.experience-card{position:relative;min-width:0;min-height:0;margin:0;overflow:hidden;background:#dce6d2}
-.experience-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.experience-card:hover img{transform:scale(1.045)}
-.experience-card::after{position:absolute;inset:35% 0 0;background:linear-gradient(transparent,#061b18d9);content:"";pointer-events:none}
-.experience-card figcaption{position:absolute;z-index:1;right:20px;bottom:18px;left:20px;display:flex;flex-direction:column;gap:5px;color:#fff}
-.experience-card figcaption strong{font-family:'Playfair Display',Georgia,serif;font-size:clamp(19px,2vw,27px);font-weight:500;line-height:1.1}
-.experience-card figcaption span{max-width:360px;color:#ffffffdf;font-size:11px;line-height:1.6}
-.experience-card-large{grid-column:span 2;grid-row:span 2}
-.experience-note{margin:22px 0 0;color:var(--muted,#5b6b61);font-size:11px;line-height:1.8}
-.fishing-section{background:#e7e9dc}
-.fishing-grid{grid-template-columns:1.4fr 1fr;grid-auto-rows:minmax(250px,350px)}
-@media(max-width:760px){.experience-section{padding:78px 7%}.experience-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:190px;gap:10px}.experience-card-large{grid-column:span 2;grid-row:span 1}.experience-card figcaption{right:11px;bottom:11px;left:11px}.experience-card figcaption strong{font-size:18px}.experience-card figcaption span{font-size:10px}.fishing-grid{grid-template-columns:1fr;grid-auto-rows:240px}.fishing-grid .experience-card-large{grid-column:auto}}
-@media(max-width:390px){.experience-grid{grid-auto-rows:160px}.experience-card figcaption strong{font-size:16px}}
+/* Melhorias funcionais e responsivas — base visual original preservada */
+.scroll-progress{position:fixed;z-index:300;top:0;left:0;width:100%;height:3px;background:rgba(16,46,41,.12);pointer-events:none}
+.scroll-progress span{display:block;width:0;height:100%;background:var(--lime,#c5d86d);transition:width .08s linear}
+.header{transition:transform .28s ease,background .25s ease,box-shadow .25s ease}
+.header.header-hidden{transform:translateY(-110%);box-shadow:none}
+.header:hover,.header:focus-within{transform:translateY(0)}
+.garden-section{background:#f3f2e9}
+.garden-grid{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:14px;margin-top:34px}
+.garden-photo{position:relative;min-height:250px;margin:0;overflow:hidden;background:#dce6d2}
+.garden-photo img{width:100%;height:100%;min-height:250px;object-fit:cover;transition:transform .55s ease}
+.garden-photo:hover img{transform:scale(1.045)}
+.garden-photo:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,#102e29b8);pointer-events:none}
+.garden-photo figcaption{position:absolute;z-index:1;left:18px;right:18px;bottom:17px;color:white;font-size:12px;font-weight:700}
+.garden-note{margin-top:18px;color:var(--muted);font-size:11px;line-height:1.7}
+.logo-3d{position:relative;touch-action:none;cursor:grab;perspective:1000px}
+.logo-3d.dragging{cursor:grabbing}
+.logo-3d img{transform-style:preserve-3d;will-change:transform;transition:filter .25s ease;user-select:none;-webkit-user-drag:none}
+.logo-3d:hover img{filter:drop-shadow(0 28px 30px #102e2933)}
+.model-hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);white-space:nowrap;padding:9px 12px;border-radius:99px;background:#102e29e8;color:white;font-size:10px;letter-spacing:.02em}
+.contact-form-wrap{height:auto;min-height:100%;padding:clamp(22px,4vw,48px);background:#183b32}
+.join-form{display:flex;flex-direction:column;gap:9px;color:#f8f6ed}
+.join-form h3{margin:0 0 3px;font-family:"Playfair Display",serif;font-size:clamp(26px,3vw,36px);line-height:1.15}
+.join-form>p{margin:0 0 12px;color:#ffffffbd;font-size:12px;line-height:1.7}
+.join-form label{margin-top:7px;font-size:11px;font-weight:700}
+.join-form input,.join-form select,.join-form textarea{width:100%;min-height:44px;padding:12px 13px;border:1px solid #ffffff50;border-radius:2px;outline:none;background:#ffffff0b;color:#fff;font:inherit;font-size:12px;transition:border-color .2s,background .2s}
+.join-form input::placeholder,.join-form textarea::placeholder{color:#ffffff85}
+.join-form select option{color:#102e29;background:#fff}
+.join-form input:focus,.join-form select:focus,.join-form textarea:focus{border-color:var(--lime,#c5d86d);background:#ffffff12}
+.join-form textarea{resize:vertical;min-height:84px}
+.join-form .btn{align-self:flex-start;margin-top:12px;border:0;cursor:pointer}
+.form-feedback{min-height:1em;margin:0;color:var(--lime,#c5d86d)!important;font-size:11px!important}
+.gallery-item{cursor:zoom-in}
+.gallery-item:focus-visible,.gallery-more:focus-visible{outline:3px solid var(--sage,#82966b);outline-offset:3px}
+.lightbox{z-index:500}
+.lightbox figure img{max-height:78vh;object-fit:contain}
+@media(max-width:760px){
+ .header{position:sticky;top:0;height:72px;padding:0 18px;transform:none!important}
+ .scroll-progress{position:fixed}
+ .garden-grid{grid-template-columns:1fr 1fr}
+ .garden-photo-large{grid-column:1/-1}
+ .garden-photo,.garden-photo img{min-height:200px}
+ .contact-form-wrap{padding:25px 20px}
+ .model-hint{font-size:9px;max-width:90%;text-align:center}
+}
+@media(max-width:480px){
+ .garden-grid{grid-template-columns:1fr}
+ .garden-photo-large{grid-column:auto}
+ .garden-photo,.garden-photo img{min-height:230px}
+}
+@media(prefers-reduced-motion:reduce){.header,.logo-3d img,.garden-photo img{transition:none!important}}
+
+/* Ajustes pontuais solicitados: ícones vetoriais e envelope flutuante */
+.social-icon svg{display:block;width:18px;height:18px}
+.whatsapp-float .wa-bubble{display:grid;place-items:center;width:30px;height:30px}
+.wa-bubble svg{display:block;width:30px;height:30px}
